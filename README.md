@@ -336,4 +336,32 @@
 
             export default swaggerDocs;
 
-    42. Setup awal selesai, bisa dilanjut membuat auth, type, validation, service, controller, route
+    43. Buat file index.ts di dalam src
+
+        import { logger } from "./utils/logger";
+        import createServer from "./utils/server";
+        import swaggerDocs from "./utils/swagger";
+
+        const app = createServer();
+        const port: string | number = process.env.PORT || 8000;
+
+        app.listen(port, () => {
+            logger.info(`Server is listeing on port ${port}`);
+
+            swaggerDocs(app, port);
+        });
+
+    44. Setup script di package.json
+
+        "scripts": {
+            "test": "jest --watchAll --detectOpenHandles",
+            "build": "tsc",
+            "dev": "npx nodemon",
+            "start": "nodemon ./dist/index.js"
+            },
+            "prisma": {
+                "schema": "prisma/schema.prisma",
+                "seed": "ts-node prisma/seed.js"
+            },
+
+    45. Setup awal selesai, bisa dilanjut membuat auth, type, validation, service, controller, route
